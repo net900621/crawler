@@ -6,7 +6,7 @@ var crawler = function(path){
 	var res = exec("../bin/phantomjs reg.js " + path, function (error, stdout, stderr) {  
 		if (!error) {
 			if (path.match(/^\//)) path = host + path;
-			var _tmp = './tmp/' + path.replace(/http:\/\/(.*)\.meilishuo.com/, '$1');
+			var _tmp = './tmp/' + path.replace(/http:\/\/(.*)\.meilishuo.com/, '$1').replace(/\/$/, '');
 
 			var _data = '';
 			_tmp = _tmp.replace(/\&amp;|\&/, '~')
@@ -27,7 +27,6 @@ var crawler = function(path){
 	                if (_url.match(/^\//)) _url = host + _url;
 	                var _tmp = './tmp/' + _url.replace(/http:\/\/(.*)\.meilishuo.com/, '$1').replace(/\/$/, '');
 	                _tmp += '.html';
-	                console.log(_tmp.replace(/\&amp;|\&/g, '~'))
 	                fs.existsSync(_tmp.replace(/\&amp;|\&/g, '~'))
 	                if (!fs.existsSync(_tmp.replace(/\&amp;|\&/g, '~'))){
 	                	_url = _url.replace(/\&amp;|\&/g, '~')
