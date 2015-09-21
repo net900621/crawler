@@ -5,11 +5,6 @@ var host = 'http://m.meilishuo.com';
 
 var writeSeo = function(path){
     path = path.replace(/\~/g, '&');
-    phantom.addCookie({
-      'MEILISHUO_MM': '54703f677ca3f97744a3ce6aa5793ebc',
-      'MEILISHUO_GLOBAL_KEY': 'de3373e7af8df8a811303081226006dd',
-      'santorini_mm': 'cf122a25ad47cc8a62b05bebd3fac4a0'
-    });
     page.open(path, function (status) {
         var _data = page.evaluate(function () {
             var _html = document.getElementsByTagName('html')[0].innerHTML;

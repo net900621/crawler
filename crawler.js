@@ -3,7 +3,9 @@ var fs = require("fs");
 var host = 'http://m.meilishuo.com';
 
 var crawler = function(path){
-	var res = exec("../bin/phantomjs reg.js " + path, function (error, stdout, stderr) {  
+	var res = exec("../bin/phantomjs reg.js " + path, function (error, stdout, stderr) {
+		console.log(stdout)
+		return 0;
 		if (!error) {
 			if (path.match(/^\//)) path = host + path;
 			var _tmp = './tmp/' + path.replace(/http:\/\/(.*)\.meilishuo.com/, '$1').replace(/\/$/, '');
