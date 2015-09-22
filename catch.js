@@ -21,7 +21,11 @@ var crawler = function(path){
 		if (!stdout || error) {
 			return 0;
 		};
-		var _out = JSON.parse(stdout);
+		try{
+			var _out = JSON.parse(stdout);
+		}catch (e){
+			console.log(e.message)
+		}
 		global.cr --;
 		if (!error) {
 
