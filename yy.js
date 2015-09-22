@@ -26,18 +26,6 @@ var crawler = function(path){
 		if (!error) {
 
 			var _data = _out.data;
-			// orm.connect(opt, function (err, db) {
-			// 	var MYTABLE = db.define('srawler', {
-			//         link : {type: 'text'},
-			//         descp : {type: 'text'}
-			//     });
-			//     db.models['srawler'].create([{'link' : _out.tmp,'descp' : _out.data}], function (err, items) {
-		 //    		if (err) {
-		 //    			return console.error('Connection error: ' + err);
-		 //    		}
-		 //    		console.log(err);
-			// 	})
-			// });
 			orm.connect(opt, function (err, db) {
 				if (err) {
 					return 0;
