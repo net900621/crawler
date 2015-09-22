@@ -1,6 +1,7 @@
 var orm = require("orm");
-var system = require('system');
 var host = 'http://m.meilishuo.com';
+var redis   = require('redis');
+var client  = redis.createClient('6379', '127.0.0.1');
 
 var opt = {
     host:     'localhost',
@@ -12,13 +13,14 @@ var opt = {
 
 orm.connect(opt, function (err, db) {
     var MYTABLE = db.define('srawler', {
-        name : {type: 'text'}
+        link : {type: 'text'},
+        descp : {type: 'text'}
     });
     db.driver.execQuery(
-	  "truncate table ?;",
-	  ['srawler'],
+	  "truncate table srawler;",
 	  function (err, data) { 
 	  	console.log(data);
 	  }
 	)
 });
+client.set(["crawlerList", [], 0], function(){}); 

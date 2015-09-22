@@ -10,12 +10,12 @@ var writeSeo = function(path){
             var _html = document.getElementsByTagName('html')[0].innerHTML;
             return '<html>' + _html.replace(/<script[^>]*>.*?<\/script>/g, '') + '</html>';
         });
-        if (path.match(/^\//)) path = host + path;
-        var _tmp = './tmp/' + path.replace(/http:\/\/(.*)\.meilishuo.com/, '$1').replace(/\/$/, '');
-        _tmp = _tmp.replace(/\&amp;|\&/g, '~')
-        _tmp += '.html'
-        if (!libFs.exists(_tmp))
-            libFs.write(_tmp, _data, 'w');
+        system.stdout.writeLine(JSON.stringify({
+            'tmp' : path,
+            'data' : _data
+        }));
+        // if (!libFs.exists(_tmp))
+        //     libFs.write(_tmp, _data, 'w');
         phantom.exit();
     });
 }

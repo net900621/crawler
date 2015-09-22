@@ -1,17 +1,7 @@
 var page = require('webpage').create(),
-	libFs = require("fs");
-var util = require('util');
-var mysql = require("mysql");
+  libFs = require("fs");
 var system = require('system');
 var host = 'http://m.meilishuo.com';
-
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'srawler'
-});
-
 
 var writeSeo = function(path){
     path = path.replace(/\~/g, '&');
@@ -24,9 +14,8 @@ var writeSeo = function(path){
         var _tmp = './tmp/' + path.replace(/http:\/\/(.*)\.meilishuo.com/, '$1').replace(/\/$/, '');
         _tmp = _tmp.replace(/\&amp;|\&/g, '~')
         _tmp += '.html'
-        if (!libFs.exists(_tmp)){
+        if (!libFs.exists(_tmp))
             libFs.write(_tmp, _data, 'w');
-        }
         phantom.exit();
     });
 }
