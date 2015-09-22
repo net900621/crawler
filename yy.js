@@ -53,7 +53,7 @@ var crawler = function(path){
 					                if (_url.match(/^\//)) _url = host + _url;
 					                var fuck_url = _url.replace(/\&amp;/g, '&');
 					                db.models['srawler'].find({'link' : fuck_url}, function (err, items) {
-					                	console.log(items)
+					                	// console.log(items)
 					                	if (!items.length) {
 						                	fuck_url = fuck_url.replace(/\&amp;|\&/g, '~')
 						                	// console.log(_url)
