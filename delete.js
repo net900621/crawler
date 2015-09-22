@@ -23,4 +23,8 @@ orm.connect(opt, function (err, db) {
 	  }
 	)
 });
-client.set(["crawlerList", [], 0], function(){}); 
+client.del("crawlerList", function(){})
+client.hkeys("crawlerList", function (err, replies) {
+    console.log(replies);
+    client.quit();
+});
