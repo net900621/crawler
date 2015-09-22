@@ -7,6 +7,8 @@ var host = 'http://www.meilishuo.com';
 global.num = 1;
 global.cr = 1;
 var orm = require("orm");
+var cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
 
 var opt = {
     host:     'localhost',
