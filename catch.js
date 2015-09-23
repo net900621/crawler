@@ -82,20 +82,21 @@ var crawler = function(path){
 	});  
 }
 if (cluster.isMaster) {
-   for (var i = 0; i < numCPUs; i++) {
+	client.hset(["crawlerList", 'http://www.meilishuo.com', 0], function(){}); 
+	for (var i = 0; i < numCPUs; i++) {
         cluster.fork();
-       }
+	}
 
     cluster.on('death', function(worker) {
         cluster.fork();
-       });
+	});
     cluster.on('exit', function(worker) {
 		cluster.fork();
-       });
+	});
 } else {
 	setInterval(function(){
-
 		if (global.num && global.cr < 20) {
+			// console.log(global.cr)
 			global.num = 0;
 			client.hkeys("crawlerList", function (err, replies) {
 				global.num = 1;
@@ -111,5 +112,4 @@ if (cluster.isMaster) {
 			
 	}, 10)
 }
-crawler('http://www.meilishuo.com')
 	
